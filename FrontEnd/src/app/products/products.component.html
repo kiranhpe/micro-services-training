@@ -1,0 +1,50 @@
+<h2 style="text-align: center;">Products</h2>
+@if(products.length == 0){
+  <h3 style="text-align: center;">No products available</h3>
+  <div class="add-product">
+    <input type="text" [(ngModel)]="newProductName" placeholder="Name">
+    <input type="number" [(ngModel)]="newProductPrice" placeholder="Price">
+    <button (click)="addProduct()" class="btn btn-primary">Add</button>
+  </div>
+}
+@else {
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Action</th>
+  </tr>
+  @for (product of products; track product.id) {
+  <tr>
+    <td>{{ product.id }}</td>
+    <td>
+      @if(editProductId == product.id){
+      <input type="text" [(ngModel)]="product.name">
+      }
+      @else{
+      {{ product.name }}
+      }
+
+    </td>
+    <td> @if(editProductId == product.id){
+      <input type="number" [(ngModel)]="product.cost">
+      }
+      @else {
+      {{ product.cost | currency:'INR' }}
+      }
+    </td>
+
+    <td>
+      <button (click)="deleteProduct(product.id)" class="btn btn-danger">Delete</button>
+      @if(editProductId == product.id){
+      <button (click)="updateProduct(product)" class="btn btn-primary">Update</button>
+      }
+      @else{
+      <button (click)="editProduct(product)" class="btn btn-primary">Edit</button>
+      }
+    </td>
+  </tr>
+  }
+</table>
+}
