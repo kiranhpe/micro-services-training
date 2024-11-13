@@ -25,12 +25,18 @@ services:
         - "3002:80"
     depends_on:
           - sqlserver
-  front-end:
-    image: ${DOCKER_REGISTRY-}front-end
+
+  customerapi:
+    image: ${DOCKER_REGISTRY-}customerapi
     build:
-      context: ./FrontEnd
-      dockerfile: Dockerfile
-    ports:
-      - "3001:80"
+      context: .
+      dockerfile: CustomerAPI/Dockerfile
+    environment:
+        DbServer: "sqlserver"
+        DbPort: "1433"
+        DbUser: "SA"
+        Password: "kiran@123"
+        Database: "CustomerDB"
     depends_on:
-      - products
+          - sqlserver
+

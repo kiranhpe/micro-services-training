@@ -7,7 +7,7 @@
     <ProjectGuid>efe05f83-f13b-4949-bd58-3479755d57c3</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
-    <DockerServiceName>products</DockerServiceName>
+    <DockerServiceName>customerapi</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">
